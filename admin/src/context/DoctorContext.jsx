@@ -6,7 +6,7 @@ import { io } from "socket.io-client";
 export const DoctorContext = createContext();
 
 const DoctorContextProvider = (props) => {
-  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const backendUrl = "https://doctor-appointment-booking-backend-3ekf.onrender.com/"
 
   const [dToken, setDToken] = useState(localStorage.getItem("dToken") || "");
 
