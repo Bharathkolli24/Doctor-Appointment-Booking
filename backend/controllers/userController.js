@@ -44,14 +44,14 @@ const sendOTP = async (req, res) => {
     });
 
     // Optional: verify transporter connection (will throw on bad creds)
-    try {
-      await transporter.verify();
-    } catch (verErr) {
-      console.error("Nodemailer verify failed:", verErr);
-      return res
-        .status(500)
-        .json({ success: false, message: "Email transporter verification failed" });
-    }
+    // try {
+    //   await transporter.verify();
+    // } catch (verErr) {
+    //   console.error("Nodemailer verify failed:", verErr);
+    //   return res
+    //     .status(500)
+    //     .json({ success: false, message: "Email transporter verification failed" });
+    // }
 
     // Try to resolve local logo path safely; only attach if file exists
     let attachments = [];
