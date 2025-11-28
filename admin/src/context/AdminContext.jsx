@@ -12,7 +12,7 @@ const AdminContextProvider = (props) => {
     const [dashData,setDashData] = useState(false)
 
 
-    const backendUrl = "https://doctor-appointment-booking-backend-g9i2.onrender.com"
+    const backendUrl = import.meta.env.VITE_BACKEND_URL
 
     const getAllDoctors = async () => {
         try {
@@ -52,7 +52,7 @@ const AdminContextProvider = (props) => {
                 toast.error(data.message)
             }
         } catch (error) {
-            toast.error(error.message)  
+            toast.error(error.message)
         }
     }
 
@@ -66,7 +66,7 @@ const AdminContextProvider = (props) => {
                 toast.error(data.message)
             }
         } catch (error) {
-            toast.error(error.message) 
+            toast.error(error.message)
         }
     }
 
@@ -95,7 +95,7 @@ const AdminContextProvider = (props) => {
     }
 
     return (
-        <AdminContext.Provider value={value}>   
+        <AdminContext.Provider value={value}>
             {props.children}
         </AdminContext.Provider>
     )

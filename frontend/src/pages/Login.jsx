@@ -51,7 +51,7 @@ const Login = () => {
         );
 
         if (data.success) {
-          await axios.post(`${backendUrl}/api/user/send-otp`, { email });
+          await axios.post(`${backendUrl}/api/user/send-otp`, { email });    // LINE 54
           setIsOtpStep(true);
           toast.success("OTP sent to your email");
         } else {
