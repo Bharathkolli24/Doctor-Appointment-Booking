@@ -27,7 +27,7 @@ const sendOTP = async (req, res) => {
     await OTP.create({ email, otp: otpCode });
 
     // Ensure env vars exist
-    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS  || !process.env.SMTP_PASS || !process.env.SMTP_USER) {
       console.error("Missing EMAIL_USER or EMAIL_PASS env vars");
       return res
         .status(500)
@@ -38,9 +38,9 @@ const sendOTP = async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
+        user: process.env.SMTP_USER || process.env.EMAIL_USER,
+        pass: process.env.SMTP_PASS || process.env.EMAIL_PASS,
+      }
     });
 
     // Optional: verify transporter connection (will throw on bad creds)
@@ -92,7 +92,7 @@ const sendOTP = async (req, res) => {
     `;
 
     const mailOptions = {
-      from: process.env.EMAIL_USER,
+      from: process.env.EMAIL_USER || process.env.SMTP_USER,
       to: email,
       subject: "Your OTP Code - Prescripto",
       html: htmlTemplate,
